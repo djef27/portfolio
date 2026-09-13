@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<style>:root { --accent: #10b981; --accent2: #22d3ee; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/base.css" />
+<style>
+  .wflow { display: flex; align-items: stretch; gap: 0; padding: 4px 0; }
+  .glabel { display: inline-flex; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); margin-bottom: 6px; }
+  .glabel::before { content: ""; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); }
+  .nn { position: relative; flex: 1; min-width: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 10px 9px; }
+  .nn .n-ic { width: 28px; height: 28px; margin: 0 auto 7px; border-radius: 9px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent2); display: grid; place-items: center; }
+  .nn .n-ic svg { width: 14px; height: 14px; }
+  .nn b { display: block; font-size: 12px; font-weight: 600; text-align: center; }
+  .nn small { font-family: var(--mono); font-size: 9px; color: var(--faint); display: block; text-align: center; margin-top: 3px; }
+  .nn .tag { position: absolute; top: 8px; left: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+  .nn.idle .tag { background: var(--surface2); box-shadow: none; }
+  .nn.sw .tag { background: var(--warn); box-shadow: 0 0 8px var(--warn); }
+  .edge2 { width: 26px; flex-shrink: 0; position: relative; }
+  .edge2::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, var(--border)), color-mix(in srgb, var(--accent2) 70%, var(--border))); }
+  .edge2::after { content: ""; position: absolute; top: 50%; right: 0; transform: translateY(-50%); border-left: 6px solid var(--accent2); border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+  .branch { background: color-mix(in srgb, var(--warn) 10%, transparent); }
+  .run-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .run-item:last-child { border-bottom: none; }
+  .rdate { font-family: var(--display); font-size: 13px; font-weight: 700; color: var(--accent2); width: 58px; flex-shrink: 0; }
+  .rchek { display: flex; gap: 8px; flex-wrap: wrap; }
+  .brief { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 13px; }
+  .brief b { display: block; font-size: 12.5px; }
+  .pal { display: flex; gap: 6px; margin-top: 9px; }
+  .pal i { width: 16px; height: 16px; border-radius: 5px; }
+  .agent-row { display: flex; align-items: center; gap: 11px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .agent-row:last-child { border-bottom: none; }
+</style>
+</head>
+<body class="mock" data-app="dropflow.io" data-project="dropship-system">
+
+<!-- ============ COVER · Workflow canvas ============ -->
+<div class="view active" id="view-cover">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">dropflow.io/workflows/research-strategy</div>
+        <span class="pill on ml-a" data-ic="cal">Weekly · Mon 08:00</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">DF</span><div><b>DropFlow</b><small>dropship automation</small></div></div>
+          <div class="side-section">Workflows</div>
+          <div class="nav-item active" data-ic="flow">Research &amp; Strategy</div>
+          <div class="nav-item" data-ic="bolt">Creative Production</div>
+          <div class="side-section">Agents</div>
+          <div class="nav-item" data-ic="spark">LLM agents</div>
+          <div class="nav-item" data-ic="layers">Creative briefs</div>
+          <div class="side-section">Data</div>
+          <div class="nav-item" data-ic="db">PostgreSQL · 18 tables</div>
+          <div class="nav-item" data-ic="check">Tests · 16</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+          <div class="side-foot">
+            <div class="tenant-row"><span class="avatar">DF</span><div><b>Demo store</b><span>Shopify · linked</span></div><span class="badge b-ok ml-a" data-ic="check">GraphQL</span></div>
+          </div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Research &amp; Strategy</h1><p>Automated Monday run · LLM agents · n8n</p></div>
+            <div class="tb-right">
+              <span class="pill on"><i class="dot"></i>Last run · completed</span>
+              <span class="pill">16 tests OK</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="card">
+              <span class="glabel">Workflow A · product intelligence</span>
+              <div class="wflow">
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="db"></span><b>Product feed</b><small>PostgreSQL</small></div>
+                <div class="edge2"></div>
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="spark"></span><b>Chief scoring</b><small>LLM agent</small></div>
+                <div class="edge2"></div>
+                <div class="nn sw"><span class="tag"></span><span class="n-ic" data-ic="flag"></span><b>Decision</b><small>keep · watch · drop</small></div>
+                <div class="edge2"></div>
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="db"></span><b>Upsert</b><small>row locked</small></div>
+              </div>
+              <div class="divider"></div>
+              <span class="glabel">Workflow B · creative production</span>
+              <div class="wflow">
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="box"></span><b>Product sync</b><small>latest scores</small></div>
+                <div class="edge2"></div>
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="write"></span><b>Brand generator</b><small>LLM · identity</small></div>
+                <div class="edge2"></div>
+                <div class="nn"><span class="tag"></span><span class="n-ic" data-ic="layers"></span><b>Creative planner</b><small>14 briefs</small></div>
+                <div class="edge2"></div>
+                <div class="nn idle"><span class="tag"></span><span class="n-ic" data-ic="cart"></span><b>Shopify draft</b><small>GraphQL</small></div>
+              </div>
+            </div>
+            <div class="grid grow cols-32">
+              <div class="card">
+                <h4>Last run summary <span class="spacer on">done</span></h4>
+                <div class="kpis" style="grid-template-columns:repeat(3,1fr);gap:12px">
+                  <div class="kpi"><div class="lk">Products</div><div class="vl">24</div><div class="su">scored</div></div>
+                  <div class="kpi"><div class="lk">Briefs</div><div class="vl">14</div><div class="su">2 per day</div></div>
+                  <div class="kpi"><div class="lk">Decision</div><div class="vl">9</div><div class="su">keep · 3 watch</div></div>
+                </div>
+                <div class="fsb mt s12"><span class="dim">LLM output</span><span class="badge b-acc">JSON contracted · schema valid</span></div>
+                <div class="fsb mt s12"><span class="dim">Tier guards</span><span class="chip" data-ic="shield">budget cap</span><span class="chip" data-ic="shield">ROAS floor</span></div>
+              </div>
+              <div class="card">
+                <h4>Agents involved</h4>
+                <div class="agent-row"><span class="ico-box" data-ic="spark"></span><div class="grow"><span class="s12 bold">Chief strategy</span></div><span class="badge b-ok">LLM</span></div>
+                <div class="agent-row"><span class="ico-box" data-ic="write"></span><div class="grow"><span class="s12 bold">Brand generator</span></div><span class="badge b-ok">LLM</span></div>
+                <div class="agent-row"><span class="ico-box" data-ic="layers"></span><div class="grow"><span class="s12 bold">Creative planner</span></div><span class="badge b-ok">LLM</span></div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Provider</span><span class="bold">Gemini · models gemini-1.5</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 1 · Product scoring ============ -->
+<div class="view" id="view-g1">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">dropflow.io/scoring</div>
+        <span class="pill on ml-a" data-ic="spark">LLM classified</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">DF</span><div><b>DropFlow</b><small>dropship automation</small></div></div>
+          <div class="side-section">Workflows</div>
+          <div class="nav-item" data-ic="flow">Research &amp; Strategy</div>
+          <div class="nav-item" data-ic="bolt">Creative Production</div>
+          <div class="side-section">Agents</div>
+          <div class="nav-item" data-ic="spark">LLM agents</div>
+          <div class="nav-item active" data-ic="layers">Creative briefs</div>
+          <div class="side-section">Data</div>
+          <div class="nav-item" data-ic="db">PostgreSQL · 18 tables</div>
+          <div class="nav-item" data-ic="check">Tests · 16</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Product scoring</h1><p>Monday run · weighted score + decision</p></div>
+            <span class="pill on ml-a" data-ic="cal">Run of the week · done</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-35">
+              <div class="card">
+                <h4>Scored products <span class="spacer">24 analyzed</span></h4>
+                <table class="tbl">
+                  <thead><tr><th>Product</th><th>Budget</th><th>ROAS floor</th><th>Score</th><th>Guardrails</th><th>Decision</th></tr></thead>
+                  <tbody>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="box"></span><span class="t-b">LED Desk Lamp</span></div></td><td class="t-mono">300 €</td><td class="t-mono">2.5</td><td><span class="gscore">86</span></td><td><span class="badge b-ok">budget ok</span></td><td><span class="badge b-ok">Keep</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="box"></span><span class="t-b">Pet Water Fountain</span></div></td><td class="t-mono">250 €</td><td class="t-mono">2.5</td><td><span class="gscore">79</span></td><td><span class="badge b-ok">ROAS ok</span></td><td><span class="badge b-ok">Keep</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="box"></span><span class="t-b">Travel Organizer</span></div></td><td class="t-mono">180 €</td><td class="t-mono">2.2</td><td><span class="gscore">64</span></td><td><span class="badge b-warn">watch</span></td><td><span class="badge b-warn">Watch</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="box"></span><span class="t-b">Soup Maker</span></div></td><td class="t-mono">150 €</td><td class="t-mono">2.8</td><td><span class="gscore">41</span></td><td><span class="badge b-bad">under floor</span></td><td><span class="badge b-bad">Drop</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="box"></span><span class="t-b">Phone Stand Pro</span></div></td><td class="t-mono">220 €</td><td class="t-mono">2.4</td><td><span class="gscore">71</span></td><td><span class="badge b-ok">budget ok</span></td><td><span class="badge b-warn">Watch</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="stack">
+                <div class="card">
+                  <h4>Guardrails</h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="shield"></span><div class="grow"><div class="nm bold">Budget cap</div><span class="muted">per product · per week</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="shield"></span><div class="grow"><div class="nm bold">ROAS floor</div><span class="muted">config per tier</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="shield"></span><div class="grow"><div class="nm bold">Frequency cap</div><span class="muted">1 decision / week</span></div></div>
+                  </div>
+                </div>
+                <div class="card grow">
+                  <h4>Scoring model</h4>
+                  <div class="fsb s12"><span class="dim">Weights</span><span class="bold mono">40/25/20/15</span></div>
+                  <div class="divider"></div>
+                  <div class="fsb s12"><span class="dim">Output</span><span class="badge b-acc">JSON contract</span></div>
+                  <div class="fsb mt s12"><span class="dim">Provider</span><span class="bold">Gemini</span></div>
+                  <div class="fsb mt s12"><span class="dim">Upsert</span><span class="bold">PostgreSQL locked</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 2 · Creative briefs ============ -->
+<div class="view" id="view-g2">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">dropflow.io/briefs</div>
+        <span class="pill on ml-a" data-ic="layers">14 / week</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">DF</span><div><b>DropFlow</b><small>dropship automation</small></div></div>
+          <div class="side-section">Workflows</div>
+          <div class="nav-item" data-ic="flow">Research &amp; Strategy</div>
+          <div class="nav-item active" data-ic="bolt">Creative Production</div>
+          <div class="side-section">Agents</div>
+          <div class="nav-item" data-ic="spark">LLM agents</div>
+          <div class="nav-item active" data-ic="layers">Creative briefs</div>
+          <div class="side-section">Data</div>
+          <div class="nav-item" data-ic="db">PostgreSQL · 18 tables</div>
+          <div class="nav-item" data-ic="check">Tests · 16</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Creative briefs</h1><p>2 briefs per day · design + copy ready</p></div>
+            <div class="seg ml-a"><button>Lun</button><button class="on">Mar</button><button>Mer</button><button>Jeu</button><button>Ven</button><button>Sam</button><button>Dim</button></div>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-32">
+              <div>
+                <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:14px">
+                  <div class="brief"><div class="fsb"><b>LED Desk Lamp</b><span class="badge b-ok">Ready</span></div><span class="muted s11">Meta · 3/3 ads</span><div class="pal"><i style="background:#f59e0b"></i><i style="background:#0f172a"></i><i style="background:#f8fafc"></i></div></div>
+                  <div class="brief"><div class="fsb"><b>Pet Water Fountain</b><span class="badge b-ok">Ready</span></div><span class="muted s11">IG Stories · 2/3</span><div class="pal"><i style="background:#22d3ee"></i><i style="background:#1e293b"></i></div></div>
+                  <div class="brief"><div class="fsb"><b>Travel Organizer</b><span class="badge b-warn">Draft</span></div><span class="muted s11">TikTok · 1/3</span><div class="pal"><i style="background:#ef4444"></i><i style="background:#f8fafc"></i></div></div>
+                  <div class="brief"><div class="fsb"><b>Phone Stand Pro</b><span class="badge b-ok">Ready</span></div><span class="muted s11">Meta · 2/3</span><div class="pal"><i style="background:#10b981"></i><i style="background:#0f172a"></i></div></div>
+                  <div class="brief"><div class="fsb"><b>LED Desk Lamp</b><span class="badge b-ok">Ready</span></div><span class="muted s11">TikTok · 3/3</span><div class="pal"><i style="background:#f59e0b"></i><i style="background:#0f172a"></i></div></div>
+                  <div class="brief"><div class="fsb"><b>Hand Warmer</b><span class="badge b-warn">Draft</span></div><span class="muted s11">Meta · 1/3</span><div class="pal"><i style="background:#8b5cf6"></i><i style="background:#f8fafc"></i></div></div>
+                </div>
+                <div class="fsb mt s12"><span class="dim">Payloads</span><span class="chip">Shopify GraphQL drafts</span><span class="chip">campaign queue</span></div>
+              </div>
+              <div class="card">
+                <h4>Brand identity <span class="spacer on">LLM generated</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="ico-box" data-ic="write"></span><div class="grow"><div class="nm bold">Lumen Life</div><span class="muted">demo brand · generated</span></div></div>
+                </div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Voice</span><span class="bold">Minimal · Trusted</span></div>
+                <div class="fsb mt s12"><span class="dim">Palette</span></div>
+                <div class="pal mt" style="margin-top:8px"><i style="background:#f59e0b"></i><i style="background:#0f172a"></i><i style="background:#64748b"></i><i style="background:#f8fafc"></i></div>
+                <div class="divider"></div>
+                <p class="s12 dim" style="font-style:italic">“Let light follow you.”</p>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Copy blocks</span><span class="badge b-acc">3 generated</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 3 · Runs, agents, system ============ -->
+<div class="view" id="view-g3">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">dropflow.io/runs</div>
+        <span class="pill on ml-a"><i class="dot"></i>All systems normal</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">DF</span><div><b>DropFlow</b><small>dropship automation</small></div></div>
+          <div class="side-section">Workflows</div>
+          <div class="nav-item" data-ic="flow">Research &amp; Strategy</div>
+          <div class="nav-item active" data-ic="bolt">Creative Production</div>
+          <div class="side-section">Agents</div>
+          <div class="nav-item" data-ic="spark">LLM agents</div>
+          <div class="nav-item" data-ic="layers">Creative briefs</div>
+          <div class="side-section">Data</div>
+          <div class="nav-item" data-ic="db">PostgreSQL · 18 tables</div>
+          <div class="nav-item" data-ic="check">Tests · 16</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Executions</h1><p>Weekly runs · traceable</p></div>
+            <span class="pill on ml-a" data-ic="clock">Schedule · Mon 08:00</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-32">
+              <div class="card">
+                <h4>Run history</h4>
+                <div class="run-item"><span class="rdate">Mar 10</span><div class="grow"><span class="s12 bold">Weekly run · completed</span><div class="rchek mt" style="margin-top:8px"><span class="chip on" data-ic="check">research</span><span class="chip on" data-ic="check">scoring</span><span class="chip on" data-ic="check">planning</span><span class="chip on" data-ic="check">shopify draft</span></div></div><span class="badge b-ok">Done</span></div>
+                <div class="run-item"><span class="rdate">Mar 03</span><div class="grow"><span class="s12 bold">Weekly run · completed</span><div class="rchek mt" style="margin-top:8px"><span class="chip on" data-ic="check">research</span><span class="chip on" data-ic="check">scoring</span><span class="chip on" data-ic="check">planning</span><span class="chip on" data-ic="check">shopify draft</span></div></div><span class="badge b-ok">Done</span></div>
+                <div class="run-item"><span class="rdate">Fév 24</span><div class="grow"><span class="s12 bold">Weekly run · paré</span><div class="rchek mt" style="margin-top:8px"><span class="chip on" data-ic="check">research</span><span class="chip on" data-ic="check">scoring</span><span class="chip on" data-ic="check">planning</span><span class="chip">shopify draft</span></div></div><span class="badge b-warn">Partial</span></div>
+              </div>
+              <div class="stack">
+                <div class="card">
+                  <h4>LLM agents <span class="spacer">3 · contracted</span></h4>
+                  <div class="agent-row"><span class="ico-box" data-ic="spark"></span><div class="grow"><span class="s12 bold">Chief strategy</span></div><span class="badge b-ok">schema ok</span></div>
+                  <div class="agent-row"><span class="ico-box" data-ic="write"></span><div class="grow"><span class="s12 bold">Brand generator</span></div><span class="badge b-ok">schema ok</span></div>
+                  <div class="agent-row"><span class="ico-box" data-ic="layers"></span><div class="grow"><span class="s12 bold">Creative planner</span></div><span class="badge b-ok">schema ok</span></div>
+                  <div class="divider"></div>
+                  <div class="fsb s12"><span class="dim">Strict JSON contracts</span><span class="bold">validated before use</span></div>
+                </div>
+                <div class="card grow">
+                  <h4>System</h4>
+                  <div class="fsb s12"><span class="dim">Database</span><span class="bold mono">PostgreSQL · 18 tables</span></div>
+                  <div class="fsb mt s12"><span class="dim">Workflows</span><span class="bold">2 · n8n</span></div>
+                  <div class="fsb mt s12"><span class="dim">Tests</span><span class="badge b-ok">16 / 16 passing</span></div>
+                  <div class="fsb mt s12"><span class="dim">Integration</span><span class="bold">Shopify GraphQL</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>:root { --accent: #8b5cf6; --accent2: #ec4899; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/base.css" />
+</head>
+<body class="mock" data-app="autovid.app" data-project="automate-video-ia">
+
+<!-- ============ COVER · Pipeline ============ -->
+<div class="view active" id="view-cover">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">autovid.app/pipeline</div>
+        <span class="pill on ml-a" data-ic="bolt">Worker pool · 3</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AV</span><div><b>AutoVid</b><small>video automation</small></div></div>
+          <div class="nav-item active" data-ic="flow">Pipeline</div>
+          <div class="nav-item" data-ic="server">Jobs queue</div>
+          <div class="nav-item" data-ic="write">Script agent</div>
+          <div class="nav-item" data-ic="tube">YouTube</div>
+          <div class="side-section">Operations</div>
+          <div class="nav-item" data-ic="signal">API &amp; health</div>
+          <div class="nav-item" data-ic="shield">Security</div>
+          <div class="nav-item" data-ic="check">Tests</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+          <div class="side-foot">
+            <div class="tenant-row"><span class="avatar">AV</span><div><b>Demo channel</b><span>YouTube · connected</span></div><span class="badge b-ok ml-a" data-ic="check">OAuth2</span></div>
+          </div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Automation pipeline</h1><p>Subject in &rarr; video published on YouTube · async queue</p></div>
+            <div class="tb-right">
+              <span class="pill on"><i class="dot"></i>YouTube connected</span>
+              <span class="pill">Redis · BullMQ</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="card">
+              <h4>Pipeline stages <span class="spacer on">5 stages · automated</span></h4>
+              <div class="node-flow">
+                <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="box"></span><b>Subject</b><small>auto queue</small></div>
+                <div class="edge"></div>
+                <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="write"></span><b>Script IA</b><small>OpenAI agent</small></div>
+                <div class="edge"></div>
+                <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="heart"></span><b>Voiceover</b><small>TTS engine</small></div>
+                <div class="edge"></div>
+                <div class="node run"><span class="n-state"></span><span class="n-ic" data-ic="film"></span><b>Render</b><small>FFmpeg</small></div>
+                <div class="edge"></div>
+                <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="tube"></span><b>Publish</b><small>YouTube API</small></div>
+              </div>
+              <div class="fsb mt s12"><span class="dim">Job in flight</span><span class="bold mono">job_7f3a · Rendering</span><span class="badge b-acc">FFmpeg · H.264</span></div>
+            </div>
+
+            <div class="grid grow cols-32">
+              <div class="card">
+                <h4>Jobs queue <span class="spacer">BullMQ · Redis</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="ico-box" data-ic="film"></span><div class="grow"><div class="nm bold">RAG Explained in 8 min</div><span class="muted">Render · 72%</span><div class="prog mt" style="margin-top:5px"><i style="width:72%"></i></div></div><span class="badge b-acc">Running</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="film"></span><div class="grow"><div class="nm bold">AI note-taking apps 2026</div><span class="muted">Script · done</span><div class="prog thin mt" style="margin-top:5px"><i style="width:40%"></i></div></div><span class="badge b-warn">Queued</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="film"></span><div class="grow"><div class="nm bold">Building with Gemini</div><span class="muted">Publish · retries 1</span><div class="prog thin mt" style="margin-top:5px"><i style="width:90%"></i></div></div><span class="badge b-ok">Done</span></div>
+                </div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Async processing</span><span class="bold">Workers consuming queue</span></div>
+                <div class="fsb mt s12"><span class="dim">Retry policy</span><span class="bold">3 attempts · backoff</span></div>
+              </div>
+              <div class="stack">
+                <div class="card">
+                  <h4>YouTube <span class="spacer on">OAuth2</span></h4>
+                  <div class="flec"><span class="avatar" style="width:34px;height:34px;border-radius:9px;background:color-mix(in srgb, var(--bad) 30%, transparent);color:var(--bad)">YT</span><div><div class="nm bold">RAG Explained in 8 min</div><span class="muted">Published · draft</span></div><span class="badge b-ok ml-a">Live</span></div>
+                  <div class="divider"></div>
+                  <p class="s12 dim">Channel scope uploaded via YouTube Data API v3.</p>
+                  <span class="chip mt" data-ic="check">Thumbnails · title · description</span>
+                </div>
+                <div class="card grow">
+                  <h4>Security middleware</h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Rate limiting</span><span class="muted">per API key</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Input validation</span><span class="muted">anti path-traversal</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Secrets scrubbed</span><span class="muted">logs sanitized</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 1 · Job detail + logs ============ -->
+<div class="view" id="view-g1">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">autovid.app/jobs/job_7f3a</div>
+        <span class="pill on ml-a" data-ic="film">Rendering</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AV</span><div><b>AutoVid</b><small>video automation</small></div></div>
+          <div class="nav-item active" data-ic="flow">Pipeline</div>
+          <div class="nav-item" data-ic="server">Jobs queue</div>
+          <div class="nav-item" data-ic="write">Script agent</div>
+          <div class="nav-item" data-ic="tube">YouTube</div>
+          <div class="side-section">Operations</div>
+          <div class="nav-item" data-ic="signal">API &amp; health</div>
+          <div class="nav-item" data-ic="shield">Security</div>
+          <div class="nav-item" data-ic="check">Tests</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Job detail</h1><p>job_7f3a · RAG Explained in 8 min</p></div>
+            <span class="pill on ml-a"><i class="dot"></i>Workers 3</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-32">
+              <div class="card">
+                <h4>Progress <span class="spacer">72%</span></h4>
+                <div class="node-flow">
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="box"></span><b>Subject</b><small>draft</small></div>
+                  <div class="edge"></div>
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="write"></span><b>Script</b><small>1,240 tok</small></div>
+                  <div class="edge"></div>
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="heart"></span><b>Voiceover</b><small>6:12</small></div>
+                  <div class="edge"></div>
+                  <div class="node run"><span class="n-state"></span><span class="n-ic" data-ic="film"></span><b>Render</b><small>72%</small></div>
+                  <div class="edge"></div>
+                  <div class="node"><span class="n-state"></span><span class="n-ic" data-ic="tube"></span><b>Publish</b><small>pending</small></div>
+                </div>
+                <div class="prog mt" style="margin-top:14px"><i style="width:72%"></i></div>
+                <h4 class="mt">Execution log</h4>
+                <div class="logs">
+                  <div class="ln ok"><span class="t">09:41:02</span><span class="lbl">script.agent</span>start · prompt validated</div>
+                  <div class="ln"><span class="t">09:41:05</span><span class="lbl">llm.call</span>openai · tokens 1,240</div>
+                  <div class="ln warn"><span class="t">09:41:09</span><span class="lbl">llm.timeout</span>retry 1/3 · backoff 2s</div>
+                  <div class="ln ok"><span class="t">09:41:18</span><span class="lbl">tts.render</span>voiceover · 6:12</div>
+                  <div class="ln"><span class="t">09:41:20</span><span class="lbl">ffmpeg.render</span>progress 72%</div>
+                  <div class="ln"><span class="t">09:41:22</span><span class="lbl">queue.next</span>job_6f20 ready</div>
+                </div>
+              </div>
+              <div class="stack">
+                <div class="card">
+                  <h4>Artifacts</h4>
+                  <div class="plist">
+                    <div class="prow"><span class="ico-box" data-ic="write"></span><div class="grow"><span class="s12 bold">script.md</span><span class="muted">4.2 KB</span></div><span class="badge b-acc">Text</span></div>
+                    <div class="prow"><span class="ico-box" data-ic="heart"></span><div class="grow"><span class="s12 bold">voice.mp3</span><span class="muted">2.1 MB</span></div><span class="badge b-acc">Audio</span></div>
+                    <div class="prow"><span class="ico-box" data-ic="film"></span><div class="grow"><span class="s12 bold">final.mp4</span><span class="muted">24 MB · 1080p</span></div><span class="badge b-warn">Rendering</span></div>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="fsb s12"><span class="dim">Publish target</span><span class="bold">Demo channel · draft</span></div>
+                </div>
+                <div class="card grow">
+                  <h4>Guardrails <span class="spacer">enabled</span></h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Prompt injection</span><span class="muted">blocked &amp; logged</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Rate limit</span><span class="muted">within quota</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">FFmpeg paths</span><span class="muted">sanitized</span></div></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Secrets scrubbed</span><span class="muted">no tokens in logs</span></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 2 · Agent console ============ -->
+<div class="view" id="view-g2">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">autovid.app/agents/script</div>
+        <span class="pill on ml-a" data-ic="shield">Guardrails active</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AV</span><div><b>AutoVid</b><small>video automation</small></div></div>
+          <div class="nav-item" data-ic="flow">Pipeline</div>
+          <div class="nav-item" data-ic="server">Jobs queue</div>
+          <div class="nav-item active" data-ic="write">Script agent</div>
+          <div class="nav-item" data-ic="tube">YouTube</div>
+          <div class="side-section">Operations</div>
+          <div class="nav-item" data-ic="signal">API &amp; health</div>
+          <div class="nav-item" data-ic="shield">Security</div>
+          <div class="nav-item" data-ic="check">Tests</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Script agent</h1><p>OpenAI SDK · retry with backoff</p></div>
+            <div class="seg ml-a"><button class="on">OpenAI</button><button>Anthropic</button></div>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-2">
+              <div class="stack">
+                <div class="card">
+                  <h4>Prompt</h4>
+                  <div class="flec" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px">
+                    <span class="ico-box" data-ic="box"></span><span class="s12 dim">RAG Explained in 8 min</span>
+                  </div>
+                  <div class="seg mt" style="margin-top:12px"><span class="chip on">Outline</span><span class="chip">Script</span><span class="chip">Hook ideas</span></div>
+                  <h4 class="mt">Safety checks <span class="spacer">auto-verified</span></h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Prompt injection</span></div><span class="muted">scanned</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Content policy</span></div><span class="muted">ok</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Max tokens</span></div><span class="mono s12">1,200</span></div>
+                  </div>
+                </div>
+                <div class="card grow">
+                  <h4>Voice &amp; render <span class="spacer">defaults</span></h4>
+                  <div class="fsb s12"><span class="dim">TTS engine</span><span class="bold">neural · fr-FR</span></div>
+                  <div class="divider"></div>
+                  <div class="fsb s12"><span class="dim">FFmpeg preset</span><span class="bold mono">H.264 · 1080p</span></div>
+                  <div class="fsb mt s12"><span class="dim">Audio</span><span class="bold">loudnorm · 16 kHz</span></div>
+                </div>
+              </div>
+              <div class="card">
+                <h4>Generated outline <span class="spacer on">variant A</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="badge b-acc">01</span><div class="grow"><span class="nm bold">Intro — why RAG</span><span class="muted">context problem in 20s</span></div></div>
+                  <div class="prow"><span class="badge b-acc">02</span><div class="grow"><span class="nm bold">Retrieval vs fine-tuning</span><span class="muted">when to use each</span></div></div>
+                  <div class="prow"><span class="badge b-acc">03</span><div class="grow"><span class="nm bold">Augmentation step</span><span class="muted">prompt assembly</span></div></div>
+                  <div class="prow"><span class="badge b-acc">04</span><div class="grow"><span class="nm bold">Demo + limits</span><span class="muted">live example, caveats</span></div></div>
+                </div>
+                <div class="fsb mt" style="margin-top:20px"><div><span class="s12 bold">Token usage</span><span class="muted s11"> 840 / 1,200</span></div><span class="bold mono s12">70%</span></div>
+                <div class="prog mt" style="margin-top:8px"><i style="width:70%"></i></div>
+                <span class="chip mt" style="margin-top:20px" data-ic="check">Regenerate · keep guardrails</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 3 · API & health ============ -->
+<div class="view" id="view-g3">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">autovid.app/health</div>
+        <span class="pill on ml-a"><i class="dot"></i>All healthy</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AV</span><div><b>AutoVid</b><small>video automation</small></div></div>
+          <div class="nav-item" data-ic="flow">Pipeline</div>
+          <div class="nav-item" data-ic="server">Jobs queue</div>
+          <div class="nav-item" data-ic="write">Script agent</div>
+          <div class="nav-item" data-ic="tube">YouTube</div>
+          <div class="side-section">Operations</div>
+          <div class="nav-item active" data-ic="signal">API &amp; health</div>
+          <div class="nav-item" data-ic="shield">Security</div>
+          <div class="nav-item" data-ic="check">Tests</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>API &amp; health</h1><p>REST API · healthcheck · end-to-end monitored</p></div>
+            <span class="pill on ml-a" data-ic="signal">Latency p95 180 ms</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-32">
+              <div class="card">
+                <h4>Endpoints <span class="spacer">REST · JSON</span></h4>
+                <table class="tbl">
+                  <thead><tr><th>Method</th><th>Endpoint</th><th>Purpose</th><th>Guard</th></tr></thead>
+                  <tbody>
+                    <tr><td><span class="badge b-acc">POST</span></td><td class="t-mono">/api/jobs</td><td>Enqueue generation</td><td><span class="badge b-ok">auth</span></td></tr>
+                    <tr><td><span class="badge b-acc">GET</span></td><td class="t-mono">/api/jobs/:id</td><td>Job status + artifacts</td><td><span class="badge b-ok">auth</span></td></tr>
+                    <tr><td><span class="badge b-acc">POST</span></td><td class="t-mono">/api/agents/script</td><td>Run script agent</td><td><span class="badge b-warn">rate</span></td></tr>
+                    <tr><td><span class="badge b-acc">POST</span></td><td class="t-mono">/api/youtube/upload</td><td>Publish draft</td><td><span class="badge b-warn">OAuth2</span></td></tr>
+                    <tr><td><span class="badge b-neu">GET</span></td><td class="t-mono">/healthz</td><td>Liveness probe</td><td><span class="badge b-ok">open</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="stack">
+                <div class="card">
+                  <h4>Service health</h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">API · Express</span></div><span class="muted mono">ok</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Workers · BullMQ</span></div><span class="muted mono">3 active</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Redis</span></div><span class="muted mono">ok</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">PostgreSQL · Prisma</span></div><span class="muted mono">ok</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">YouTube API</span></div><span class="muted mono">connected</span></div>
+                  </div>
+                </div>
+                <div class="card grow">
+                  <h4>Test suite</h4>
+                  <div class="fsb"><span class="s12 bold">Unit &amp; integration</span><span class="badge b-ok">all passing</span></div>
+                  <div class="prog mt" style="margin-top:10px"><i style="width:100%"></i></div>
+                  <div class="flec mt" style="margin-top:14px"><span class="chip" data-ic="check">Jest</span><span class="chip" data-ic="check">YouTube mocked</span><span class="chip" data-ic="check">CI ready</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/base.js"></script>
+</body>
+</html>

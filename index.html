@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJOGBENOU Fabien — Développeur Fullstack & Automatisation IA</title>
+  <meta name="description" content="Portfolio de DJOGBENOU Fabien, développeur fullstack et automatisation IA. Plateformes SaaS, sites web interactifs, APIs sécurisées et workflows n8n." />
+  <meta name="author" content="DJOGBENOU Fabien" />
+  <meta property="og:title" content="DJOGBENOU Fabien — Développeur Fullstack & Automatisation IA" />
+  <meta property="og:description" content="Applications web complètes, plateformes SaaS et automatisations pilotées par l'IA." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#07080c" />
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#accueil" class="brand" aria-label="Accueil">
+        <img src="assets/img/logo.svg" alt="" class="brand-logo" />
+        <span class="brand-text"><strong data-site="firstName">Fabien</strong><span>Développeur</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navigation principale">
+        <a href="#accueil" class="nav-link">Accueil</a>
+        <a href="#competences" class="nav-link">Compétences</a>
+        <a href="#projets" class="nav-link">Projets</a>
+        <a href="#processus" class="nav-link">Méthode</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-sm btn-primary">Travailler avec moi</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="accueil">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <span class="pill reveal">
+            <span class="pill-dot"></span>
+            <span data-site="availability">Disponible pour missions freelance (Fiverr · Upwork)</span>
+          </span>
+          <h1 class="reveal" data-delay="80">
+            Bonjour, je suis <span class="gradient-text" data-site="name">DJOGBENOU Fabien</span>.
+          </h1>
+          <p class="hero-role reveal" data-delay="140">
+            <span class="mono">&gt;</span>
+            <span class="typed" id="typed"></span><span class="caret" aria-hidden="true"></span>
+          </p>
+          <p class="hero-intro reveal" data-delay="200" data-site="intro"></p>
+          <div class="hero-cta reveal" data-delay="260">
+            <a href="#projets" class="btn btn-primary">
+              Voir mes projets
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-ghost">Me contacter</a>
+          </div>
+          <div class="hero-services" id="heroServices" aria-label="Prestations"></div>
+        </div>
+
+        <div class="hero-visual reveal" data-delay="220" aria-hidden="true">
+          <div class="code-window">
+            <div class="code-bar">
+              <span class="dot red"></span><span class="dot amber"></span><span class="dot green"></span>
+              <span class="code-file mono">fabien.config.ts</span>
+            </div>
+            <pre class="code-body mono"><code><span class="ln"><span class="kw">const</span> <span class="vr">fabien</span> = {</span>
+<span class="ln">  <span class="pr">role</span>: <span class="str">"Fullstack & IA"</span>,</span>
+<span class="ln">  <span class="pr">front</span>: [<span class="str">"React"</span>, <span class="str">"Next.js"</span>],</span>
+<span class="ln">  <span class="pr">back</span>: [<span class="str">"NestJS"</span>, <span class="str">"Express"</span>],</span>
+<span class="ln">  <span class="pr">data</span>: [<span class="str">"PostgreSQL"</span>, <span class="str">"Redis"</span>],</span>
+<span class="ln">  <span class="pr">ai</span>: [<span class="str">"OpenAI"</span>, <span class="str">"Gemini"</span>],</span>
+<span class="ln">  <span class="pr">automation</span>: [<span class="str">"n8n"</span>],</span>
+<span class="ln">  <span class="fn">build</span>: () <span class="kw">=&gt;</span> <span class="str">"🚀"</span></span>
+<span class="ln">}</span></code></pre>
+          </div>
+          <div class="float-badge badge-a"><span class="fb-dot"></span>Disponible</div>
+          <div class="float-badge badge-b">IA · API · SaaS</div>
+        </div>
+      </div>
+
+      <div class="tech-marquee" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+    </section>
+
+    <section class="section skills" id="competences">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Compétences</span>
+          <h2>Ce que je sais faire</h2>
+          <p class="section-sub">De l'interface utilisateur à l'infrastructure, en passant par l'intelligence artificielle et l'automatisation.</p>
+        </header>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projets">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Portfolio</span>
+          <h2>Projets sélectionnés</h2>
+          <p class="section-sub">Des applications réelles conçues de bout en bout. Cliquez sur une carte pour découvrir l'étude de cas complète.</p>
+        </header>
+        <div class="filters reveal" id="filterChips" role="tablist" aria-label="Filtrer les projets"></div>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section process" id="processus">
+      <div class="container">
+        <header class="section-head reveal">
+          <span class="eyebrow">Méthode</span>
+          <h2>Comment je travaille</h2>
+          <p class="section-sub">Un processus clair, du premier échange à la livraison.</p>
+        </header>
+        <div class="process-grid">
+          <article class="process-step reveal">
+            <span class="step-num mono">01</span>
+            <h3>Écoute & cadrage</h3>
+            <p>Je comprends votre besoin, je définis le périmètre et je vous propose un délai et un budget réalistes.</p>
+          </article>
+          <article class="process-step reveal" data-delay="80">
+            <span class="step-num mono">02</span>
+            <h3>Conception</h3>
+            <p>Maquettes rapides et choix techniques. On valide la direction avant d'écrire la première ligne de code.</p>
+          </article>
+          <article class="process-step reveal" data-delay="160">
+            <span class="step-num mono">03</span>
+            <h3>Développement</h3>
+            <p>Code propre et documenté, responsive mobile-first, tests et points d'étape réguliers.</p>
+          </article>
+          <article class="process-step reveal" data-delay="240">
+            <span class="step-num mono">04</span>
+            <h3>Livraison & suivi</h3>
+            <p>Mise en ligne, remise du code source, prise en main et accompagnement après livraison.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-card reveal">
+          <div class="contact-glow" aria-hidden="true"></div>
+          <span class="eyebrow">Contact</span>
+          <h2>Un projet en tête ?</h2>
+          <p>Décrivez-moi votre besoin en quelques lignes. Je vous réponds rapidement avec une proposition claire.</p>
+          <div class="contact-actions">
+            <a href="#" class="btn btn-primary btn-lg" id="contactEmail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              Envoyer un message
+            </a>
+            <button class="btn btn-ghost btn-lg" id="copyEmail" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+              Copier l'email
+            </button>
+          </div>
+          <div class="contact-meta">
+            <span class="meta-item" data-site="email"></span>
+            <span class="meta-sep">•</span>
+            <span class="meta-item" data-site="location">Cotonou, Bénin</span>
+          </div>
+          <div class="socials" id="socials"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/img/logo.svg" alt="" />
+        <span data-site="name">DJOGBENOU Fabien</span>
+      </div>
+      <p class="footer-note">Conçu et développé de A à Z — HTML, CSS & JavaScript.</p>
+      <p class="footer-copy">© <span id="year"></span> <span data-site="name">DJOGBENOU Fabien</span>. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="Fermer" data-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-hero" id="modalHero">
+        <span class="modal-category" id="modalCategory"></span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-head">
+          <h3 id="modalTitle"></h3>
+          <p id="modalTagline"></p>
+        </div>
+        <div class="modal-tabs" id="modalTabs" role="tablist">
+          <button class="tab active" data-tab="overview" role="tab">Aperçu</button>
+          <button class="tab" data-tab="gallery" role="tab">Galerie</button>
+          <button class="tab" data-tab="specs" role="tab">Fiche technique</button>
+        </div>
+        <div class="modal-content" id="modalContent"></div>
+        <div class="modal-foot">
+          <button class="nav-proj" id="prevProject">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            Précédent
+          </button>
+          <span class="proj-count" id="projCount"></span>
+          <button class="nav-proj" id="nextProject">
+            Suivant
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/config.js"></script>
+  <script src="data/projects.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<style>:root { --accent: #0ea5e9; --accent2: #22d3ee; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/base.css" />
+<style>
+  .arch { display: flex; flex-direction: column; gap: 12px; }
+  .arow { display: flex; align-items: center; justify-content: center; gap: 14px; position: relative; }
+  .abox {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 13px;
+    padding: 15px 18px; min-width: 168px; position: relative;
+  }
+  .abox .a-ic { width: 30px; height: 30px; border-radius: 9px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent2); display: grid; place-items: center; margin-bottom: 9px; }
+  .abox .a-ic svg { width: 15px; height: 15px; }
+  .abox b { display: block; font-size: 13.5px; }
+  .abox small { font-size: 11px; color: var(--faint); display: block; margin-top: 3px; }
+  .abox.core { background: linear-gradient(160deg, color-mix(in srgb, var(--accent) 18%, transparent), var(--surface)); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+  .abox svg.mini { position: absolute; top: 12px; right: 12px; width: 13px; height: 13px; color: var(--ok); }
+  .arrow { height: 22px; width: 100%; position: relative; flex-shrink: 0; }
+  .arrow::before { content: ""; position: absolute; left: 50%; right: 50%; top: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(34,211,238,.6), transparent); }
+  .arrow::after { content: ""; position: absolute; left: calc(50% - 5px); top: calc(100% - 6px); border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--accent2); }
+  .alabel { position: absolute; top: -14px; font-family: var(--mono); font-size: 9.5px; color: var(--faint); background: var(--panel); padding: 0 8px; border-radius: 6px; }
+  .svc { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .svc:last-child { border-bottom: none; }
+  .otp { display: flex; gap: 9px; }
+  .otp i { width: 38px; height: 44px; border-radius: 9px; border: 1px solid var(--border2); background: var(--surface); display: grid; place-items: center; font-family: var(--display); font-weight: 600; }
+  .otp i.f { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent2); }
+</style>
+</head>
+<body class="mock" data-app="ai-bos.dev" data-project="ai-bos">
+
+<!-- ============ COVER · Architecture ============ -->
+<div class="view active" id="view-cover">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">ai-bos.dev/architecture</div>
+        <span class="pill on ml-a" data-ic="shield">Enterprise-ready</span>
+      </div>
+      <div class="app" style="grid-template-columns: 1.65fr 1fr;">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AB</span><div><b>AI-BOS</b><small>business OS backbone</small></div></div>
+          <div class="nav-item active" data-ic="arch">Architecture</div>
+          <div class="nav-item" data-ic="shield">Security &amp; MFA</div>
+          <div class="nav-item" data-ic="users">Tenants</div>
+          <div class="side-section">Runtime</div>
+          <div class="nav-item" data-ic="flow">Workflows</div>
+          <div class="nav-item" data-ic="db">Vector store</div>
+          <div class="nav-item" data-ic="server">Infrastructure</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="signal">Health</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+          <div class="side-foot">
+            <div class="tenant-row"><span class="avatar">AB</span><div><b>Backbone</b><span>cluster · prod</span></div><span class="badge b-ok ml-a" data-ic="check">RLS</span></div>
+          </div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>System backbone</h1><p>Identity · multi-tenant · durable workflows · embeddings</p></div>
+            <span class="pill on ml-a"><i class="dot"></i>Cluster healthy</span>
+          </div>
+          <div class="content">
+            <div class="arch">
+              <div class="arow">
+                <div class="abox"><span class="a-ic" data-ic="grid"></span><b>Web app</b><small>clients</small></div>
+                <div class="abox"><span class="a-ic" data-ic="grid"></span><b>Mobile app</b><small>clients</small></div>
+              </div>
+              <div class="arrow"><span class="alabel">HTTP · TLS</span></div>
+              <div class="arow">
+                <div class="abox core"><span class="a-ic" data-ic="server"></span><b>API Gateway</b><span class="mini" data-ic="check"></span><small>NestJS · JWT</small></div>
+              </div>
+              <div class="arrow"><span class="alabel">services · RLS scoped</span></div>
+              <div class="arow">
+                <div class="abox"><span class="a-ic" data-ic="shield"></span><b>Identity</b><span class="mini" data-ic="check"></span><small>MFA TOTP · RBAC · refresh</small></div>
+                <div class="abox"><span class="a-ic" data-ic="db"></span><b>Data &amp; vectors</b><span class="mini" data-ic="check"></span><small>PostgreSQL · pgvector · Redis</small></div>
+                <div class="abox"><span class="a-ic" data-ic="flow"></span><b>Orchestration</b><span class="mini" data-ic="check"></span><small>Temporal · durable</small></div>
+              </div>
+              <div class="arrow"><span class="alabel">durable storage</span></div>
+              <div class="arow">
+                <span class="chip" data-ic="db">PostgreSQL · RLS</span>
+                <span class="chip" data-ic="db">pgvector</span>
+                <span class="chip" data-ic="bolt">Redis</span>
+                <span class="chip" data-ic="flow">Temporal</span>
+              </div>
+            </div>
+            <div class="card">
+              <h4>Guarantees <span class="spacer">design</span></h4>
+              <div class="flec" style="gap:9px;flex-wrap:wrap">
+                <span class="chip on" data-ic="shield">Multi-tenant · RLS</span>
+                <span class="chip on" data-ic="key">MFA TOTP enforced</span>
+                <span class="chip on" data-ic="users">3 roles</span>
+                <span class="chip on" data-ic="flow">Idempotent workflows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 1 · Security ============ -->
+<div class="view" id="view-g1">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">ai-bos.dev/security</div>
+        <span class="pill on ml-a" data-ic="key">MFA on</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AB</span><div><b>AI-BOS</b><small>business OS backbone</small></div></div>
+          <div class="nav-item" data-ic="arch">Architecture</div>
+          <div class="nav-item active" data-ic="shield">Security &amp; MFA</div>
+          <div class="nav-item" data-ic="users">Tenants</div>
+          <div class="side-section">Runtime</div>
+          <div class="nav-item" data-ic="flow">Workflows</div>
+          <div class="nav-item" data-ic="db">Vector store</div>
+          <div class="nav-item" data-ic="server">Infrastructure</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="signal">Health</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Security &amp; identity</h1><p>TOTP MFA · refresh rotation · role-based access</p></div>
+            <span class="pill on ml-a" data-ic="lock">Policy active</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-35">
+              <div class="stack">
+                <div class="card">
+                  <h4>Security policy</h4>
+                  <div class="flec" style="gap:9px;flex-wrap:wrap">
+                    <span class="chip on" data-ic="key">MFA TOTP · owners</span>
+                    <span class="chip on" data-ic="lock">Refresh rotation</span>
+                    <span class="chip on" data-ic="users">RBAC · 3 roles</span>
+                    <span class="chip on" data-ic="box">RLS per tenant</span>
+                  </div>
+                </div>
+                <div class="card grow">
+                  <h4>Enroll device <span class="spacer on">step 2 / 3</span></h4>
+                  <div class="flec" style="gap:16px">
+                    <span class="abox core" style="min-width:120px" data-ic="shield"><b style="margin-top:8px">Authenticator</b></span>
+                    <div class="grow"> <div class="otp"><i class="f">4</i><i class="f">8</i><i class="f">2</i><i class="f">9</i><i>1</i><i>6</i></div>
+                      <div class="fsb mt" style="margin-top:14px"><span class="badge b-acc">Verify &amp; enable</span><span class="badge b-neu">Backup codes</span></div>
+                    </div>
+                  </div>
+                  <div class="divider"></div>
+                  <p class="s12 dim">TOTP enforced for owners · optional for admins</p>
+                </div>
+                <div class="card">
+                  <h4>Active sessions</h4>
+                  <table class="tbl">
+                    <thead><tr><th>Device</th><th>Token</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr><td class="t-b">Chrome · Windows</td><td class="t-mono">jwt…4f2a</td><td><span class="badge b-ok">Active</span></td></tr>
+                      <tr><td class="t-b">iPhone · Safari</td><td class="t-mono">jwt…9c11</td><td><span class="badge b-ok">Active</span></td></tr>
+                      <tr><td class="t-b">Ancien terminal</td><td class="t-mono">jwt…77e3</td><td><span class="badge b-bad">Revoked</span></td></tr>
+                    </tbody>
+                  </table>
+                  <p class="s11 dim mt" style="margin-top:10px">Refresh rotation enabled on every request</p>
+                </div>
+              </div>
+              <div class="stack">
+                <div class="card grow">
+                  <h4>Role matrix <span class="spacer">RBAC</span></h4>
+                  <table class="tbl">
+                    <thead><tr><th>Capability</th><th>Owner</th><th>Admin</th><th>Member</th></tr></thead>
+                    <tbody>
+                      <tr><td class="t-b">Invite users</td><td><span class="badge b-ok">✓</span></td><td><span class="badge b-ok">✓</span></td><td><span class="faint">—</span></td></tr>
+                      <tr><td class="t-b">Manage billing</td><td><span class="badge b-ok">✓</span></td><td><span class="faint">—</span></td><td><span class="faint">—</span></td></tr>
+                      <tr><td class="t-b">Configure MFA</td><td><span class="badge b-ok">✓</span></td><td><span class="badge b-warn">opt-in</span></td><td><span class="faint">—</span></td></tr>
+                      <tr><td class="t-b">Read data</td><td><span class="badge b-ok">✓</span></td><td><span class="badge b-ok">✓</span></td><td><span class="badge b-ok">✓</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card">
+                  <h4>Token lifecycle</h4>
+                  <div class="plist">
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Access · 15 min</span></div><span class="muted">JWT</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Refresh · rotating</span></div><span class="muted">reuse locked</span></div>
+                    <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Hash</span></div><span class="muted">bcrypt</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 2 · Temporal workflows ============ -->
+<div class="view" id="view-g2">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">ai-bos.dev/workflows</div>
+        <span class="pill on ml-a" data-ic="flow">Durable</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AB</span><div><b>AI-BOS</b><small>business OS backbone</small></div></div>
+          <div class="nav-item" data-ic="arch">Architecture</div>
+          <div class="nav-item" data-ic="shield">Security &amp; MFA</div>
+          <div class="nav-item" data-ic="users">Tenants</div>
+          <div class="side-section">Runtime</div>
+          <div class="nav-item active" data-ic="flow">Workflows</div>
+          <div class="nav-item" data-ic="db">Vector store</div>
+          <div class="nav-item" data-ic="server">Infrastructure</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="signal">Health</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Workflows</h1><p>Temporal.io · durable · idempotent executions</p></div>
+            <span class="pill on ml-a" data-ic="clock">9 runs · 24 h</span>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-35">
+              <div class="card">
+                <h4>Workflow list</h4>
+                <table class="tbl">
+                  <thead><tr><th>Name</th><th>Status</th><th>Duration</th><th>Idempotent</th></tr></thead>
+                  <tbody>
+                    <tr><td class="t-b">Onboard tenant</td><td><span class="badge b-ok">Completed</span></td><td class="t-mono">1m 12s</td><td><span class="badge b-acc">on</span></td></tr>
+                    <tr><td class="t-b">Rotate API keys</td><td><span class="badge b-ok">Completed</span></td><td class="t-mono">42s</td><td><span class="badge b-acc">on</span></td></tr>
+                    <tr><td class="t-b">Sync ingestion</td><td><span class="badge b-acc">Running</span></td><td class="t-mono">—</td><td><span class="badge b-acc">on</span></td></tr>
+                    <tr><td class="t-b">Purge audit</td><td><span class="badge b-ok">Completed</span></td><td class="t-mono">2m 03s</td><td><span class="badge b-acc">on</span></td></tr>
+                    <tr><td class="t-b">Embryo backup</td><td><span class="badge b-bad">Retrying</span></td><td class="t-mono">38s</td><td><span class="badge b-acc">on</span></td></tr>
+                  </tbody>
+                </table>
+                <div class="fsb mt" style="margin-top:12px"><span class="dim s12">Retry policy</span><span class="bold s12">exponential · max 4</span></div>
+                <div class="fsb mt s12"><span class="dim">Anti-loop guard</span><span class="badge b-acc">active</span></div>
+              </div>
+              <div class="card grow">
+                <h4>Run timeline <span class="spacer">Sync ingestion</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="badge b-ok">01</span><div class="grow"><span class="nm bold">Schedule received</span></div><span class="muted mono">t+0s</span></div>
+                  <div class="prow"><span class="badge b-ok">02</span><div class="grow"><span class="nm bold">Validate tenant scope</span></div><span class="muted mono">t+0s</span></div>
+                  <div class="prow"><span class="badge b-ok">03</span><div class="grow"><span class="nm bold">Extract · mapped</span></div><span class="muted mono">t+4s</span></div>
+                  <div class="prow"><span class="badge b-acc">04</span><div class="grow"><span class="nm bold">Stable event · running</span></div><span class="muted mono">t+8s</span></div>
+                </div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Durability marker</span><span class="chip on" data-ic="check">Recovered after restart</span></div>
+                <div class="fsb mt s12"><span class="dim">Exact-once</span><span class="chip">dedupe keyed</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 3 · Tenants & infra ============ -->
+<div class="view" id="view-g3">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">ai-bos.dev/infrastructure</div>
+        <span class="pill on ml-a"><i class="dot"></i>Provisioned</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">AB</span><div><b>AI-BOS</b><small>business OS backbone</small></div></div>
+          <div class="nav-item" data-ic="arch">Architecture</div>
+          <div class="nav-item" data-ic="shield">Security &amp; MFA</div>
+          <div class="nav-item active" data-ic="users">Tenants</div>
+          <div class="side-section">Runtime</div>
+          <div class="nav-item active" data-ic="db">Vector store</div>
+          <div class="nav-item" data-ic="server">Infrastructure</div>
+          <div class="side-section">System</div>
+          <div class="nav-item" data-ic="signal">Health</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Tenants &amp; infrastructure</h1><p>Docker Compose · provisioned workspaces</p></div>
+            <span class="pill on ml-a" data-ic="server">6 services</span>
+          </div>
+          <div class="content">
+            <div class="kpis">
+              <div class="kpi"><div class="ic" data-ic="box"></div><div class="lk">Tenants</div><div class="vl">4</div><div class="su">provisioned · RLS</div></div>
+              <div class="kpi"><div class="ic" data-ic="server"></div><div class="lk">Services</div><div class="vl">6</div><div class="su">Docker Compose</div></div>
+              <div class="kpi"><div class="ic" data-ic="users"></div><div class="lk">Roles</div><div class="vl">3</div><div class="su">Owner · Admin · Member</div></div>
+              <div class="kpi"><div class="ic" data-ic="db"></div><div class="lk">Collections</div><div class="vl">1</div><div class="su">pgvector · HNSW</div></div>
+            </div>
+            <div class="grid grow cols-2">
+              <div class="card">
+                <h4>Tenants</h4>
+                <table class="tbl">
+                  <thead><tr><th>Workspace</th><th>Region</th><th>State</th><th>Policy</th></tr></thead>
+                  <tbody>
+                    <tr><td class="t-mono">tnt_01</td><td class="t-b">afr · Cotonou</td><td><span class="badge b-ok">Provisioned</span></td><td><span class="badge b-acc">RLS</span></td></tr>
+                    <tr><td class="t-mono">tnt_02</td><td class="t-b">eu · Paris</td><td><span class="badge b-ok">Active</span></td><td><span class="badge b-acc">RLS</span></td></tr>
+                    <tr><td class="t-mono">tnt_03</td><td class="t-b">na · New York</td><td><span class="badge b-ok">Active</span></td><td><span class="badge b-acc">RLS</span></td></tr>
+                    <tr><td class="t-mono">tnt_04</td><td class="t-b">afr · Lagos</td><td><span class="badge b-warn">Pending</span></td><td><span class="badge b-acc">RLS</span></td></tr>
+                  </tbody>
+                </table>
+                <p class="s11 dim mt" style="margin-top:10px">Row-level security enforced per workspace</p>
+              </div>
+              <div class="card">
+                <h4>Vector store <span class="spacer on">for AI agents</span></h4>
+                <div class="fsb s12"><span class="dim">Store</span><span class="bold mono">pgvector</span></div>
+                <div class="fsb mt s12"><span class="dim">Dimensions</span><span class="bold mono">1536</span></div>
+                <div class="fsb mt s12"><span class="dim">Index</span><span class="bold mono">HNSW</span></div>
+                <div class="divider"></div>
+                <div class="plist">
+                  <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Embeddings collection</span></div></div>
+                  <div class="prow"><span class="badge b-ok" data-ic="check"></span><div class="grow"><span class="nm bold">Tenant-scoped queries</span></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card grow">
+              <h4>Docker Compose <span class="spacer">all healthy</span></h4>
+              <div class="flec" style="gap:10px;flex-wrap:wrap">
+                <span class="chip on" data-ic="server">api · nestjs</span>
+                <span class="chip on" data-ic="server">worker</span>
+                <span class="chip on" data-ic="db">postgres · pgvector</span>
+                <span class="chip on" data-ic="bolt">redis</span>
+                <span class="chip on" data-ic="flow">temporal</span>
+                <span class="chip on" data-ic="grid">temporal-ui</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/base.js"></script>
+</body>
+</html>

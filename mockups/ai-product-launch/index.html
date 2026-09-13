@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  :root { --accent: #6366f1; --accent2: #22d3ee; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/base.css" />
+<style>
+  .x-nav { accent-color: var(--accent); }
+</style>
+</head>
+<body class="mock" data-app="launchpad.app" data-project="ai-product-launch">
+
+<!-- ============ COVER · Dashboard ============ -->
+<div class="view active" id="view-cover">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url" id="urlBar">launchpad.app</div>
+        <span class="pill on ml-a"><i class="dot"></i>All systems operational</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">LP</span><div><b>LaunchPad</b><small>AI product launch</small></div></div>
+          <div class="nav-item active" data-ic="grid">Dashboard</div>
+          <div class="nav-item nav-cta" data-ic="bolt">New idea</div>
+          <div class="side-section">Launch engine</div>
+          <div class="nav-item" data-ic="spark">Idea scoring</div>
+          <div class="nav-item" data-ic="write">Copywriter</div>
+          <div class="nav-item" data-ic="layers">Landing pages</div>
+          <div class="side-section">Workspace</div>
+          <div class="nav-item" data-ic="chart">Analytics</div>
+          <div class="nav-item" data-ic="log">Audit logs</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+          <div class="side-foot">
+            <div class="tenant-row">
+              <span class="avatar">FW</span>
+              <div><b>Demo workspace</b><span>Plan Pro · Owner</span></div>
+              <span class="badge b-acc ml-a" data-ic="lock">RLS</span>
+            </div>
+          </div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Dashboard</h1><p>Multi-provider orchestration &middot; automatic fallback</p></div>
+            <div class="tb-search" data-ic="search"><span>Search ideas, launches…</span></div>
+            <div class="tb-right">
+              <span class="pill on" data-ic="layers">OpenAI &middot; Anthropic &middot; Gemini</span>
+              <span class="pill on"><i class="dot"></i>API ok</span>
+            </div>
+          </div>
+          <div class="content">
+            <div class="kpis">
+              <div class="kpi">
+                <div class="ic" data-ic="layers"></div>
+                <div class="lk">Providers</div><div class="vl">3</div>
+                <div class="su">OpenAI · Anthropic · Gemini</div>
+              </div>
+              <div class="kpi">
+                <div class="ic" data-ic="spark"></div>
+                <div class="lk">Scoring criteria</div><div class="vl">4</div>
+                <div class="su">weighted · engine ready</div>
+              </div>
+              <div class="kpi">
+                <div class="ic" data-ic="box"></div>
+                <div class="lk">Tenants</div><div class="vl">6</div>
+                <div class="su">isolated · RLS enforced</div>
+              </div>
+              <div class="kpi">
+                <div class="ic" data-ic="bolt"></div>
+                <div class="lk">Runs today</div><div class="vl">18</div>
+                <div class="su">providers fallback: 2</div>
+              </div>
+            </div>
+
+            <div class="grid cols-23">
+              <div class="card grow">
+                <h4>Idea pipeline <span class="spacer on">4 stages · automated</span></h4>
+                <div class="node-flow">
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="bolt"></span><b>Idea</b><small>inbox</small></div>
+                  <div class="edge"></div>
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="spark"></span><b>Scoring</b><small>LLM · 4 criteria</small></div>
+                  <div class="edge"></div>
+                  <div class="node run"><span class="n-state"></span><span class="n-ic" data-ic="write"></span><b>Copywriter</b><small>3 providers</small></div>
+                  <div class="edge"></div>
+                  <div class="node done"><span class="n-state"></span><span class="n-ic" data-ic="layers"></span><b>Landing</b><small>assembled</small></div>
+                </div>
+                <div class="plist mt">
+                  <div class="prow"><span class="badge b-ok">Copy ready</span><div class="grow"><div class="nm bold">Launch #12 — AI Menu Planner</div><span class="muted">Hero + features generated · provider OpenAI</span></div><span class="badge b-acc">Anthropic</span></div>
+                  <div class="prow"><span class="badge b-warn">In progress</span><div class="grow"><div class="nm bold">Launch #13 — Budget Copilot</div><span class="muted">Copywriter stage · fallback to Gemini</span></div><span class="badge b-acc">Gemini</span></div>
+                </div>
+              </div>
+              <div class="card">
+                <h4>Model usage <span class="spacer">7 days</span></h4>
+                <div class="hbar">
+                  <i style="height:34%"></i><i style="height:48%"></i><i style="height:30%"></i>
+                  <i style="height:66%"></i><i class="hi" style="height:88%"></i><i class="hi" style="height:72%"></i><i style="height:56%"></i>
+                </div>
+                <div class="fsb mt s12 dim">
+                  <span class="flec"><span class="gauge on"></span>OpenAI 42%</span>
+                  <span class="flec"><span class="gauge on" style="background:#a78bfa"></span>Anthropic 33%</span>
+                  <span class="flec"><span class="gauge on" style="background:#34d399"></span>Gemini 25%</span>
+                </div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Fallback behavior</span><span class="badge b-acc">Auto · retry 2</span></div>
+                <div class="fsb mt s12"><span class="dim">Response time (p95)</span><span class="bold mono">1.8 s</span></div>
+              </div>
+            </div>
+
+            <div class="grid cols-23 grow">
+              <div class="card">
+                <h4>Ideas in queue <span class="spacer">live</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="ico-box" data-ic="spark"></span><div class="grow"><div class="nm bold">AI Menu Planner</div><span class="muted">Foodtech · queued</span></div><span class="gscore">—</span><span class="badge b-neu">Pending</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="spark"></span><div class="grow"><div class="nm bold">Budget Copilot</div><span class="muted">Fintech · scored</span></div><span class="gscore">82</span><span class="badge b-ok">Strong</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="spark"></span><div class="grow"><div class="nm bold">Docs Chatbot</div><span class="muted">Productivity · scored</span></div><span class="gscore">61</span><span class="badge b-warn">Explore</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="spark"></span><div class="grow"><div class="nm bold">Invoice Scanner</div><span class="muted">Fintech · scored</span></div><span class="gscore">74</span><span class="badge b-ok">Strong</span></div>
+                </div>
+              </div>
+              <div class="card">
+                <h4>Generated landing pages <span class="spacer">drafts</span></h4>
+                <div class="plist">
+                  <div class="prow"><span class="ico-box" data-ic="layers"></span><div class="grow"><div class="nm bold">AI Menu Planner</div><span class="muted">Hero, Features, Pricing, FAQ</span></div><span class="badge b-warn">Copy ready</span></div>
+                  <div class="prow"><span class="ico-box" data-ic="layers"></span><div class="grow"><div class="nm bold">Budget Copilot</div><span class="muted">Hero, Features</span></div><span class="badge b-neu">Assembling</span></div>
+                </div>
+                <div class="divider"></div>
+                <div class="fsb s12"><span class="dim">Access control</span><span class="badge b-acc" data-ic="key">JWT + RBAC</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 1 · Scoring ============ -->
+<div class="view" id="view-g1">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">launchpad.app/scoring</div>
+        <span class="pill on ml-a" data-ic="spark">Scoring engine</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">LP</span><div><b>LaunchPad</b><small>AI product launch</small></div></div>
+          <div class="nav-item" data-ic="grid">Dashboard</div>
+          <div class="nav-item nav-cta" data-ic="bolt">New idea</div>
+          <div class="side-section">Launch engine</div>
+          <div class="nav-item active" data-ic="spark">Idea scoring</div>
+          <div class="nav-item" data-ic="write">Copywriter</div>
+          <div class="nav-item" data-ic="layers">Landing pages</div>
+          <div class="side-section">Workspace</div>
+          <div class="nav-item" data-ic="chart">Analytics</div>
+          <div class="nav-item" data-ic="log">Audit logs</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Idea scoring</h1><p>4 weighted criteria · LLM weighted verdict</p></div>
+            <div class="seg ml-a">
+              <button class="on">All</button><button>Strong</button><button>Explore</button><button>Weak</button>
+            </div>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-35">
+              <div class="card">
+                <h4>Scored ideas <span class="spacer">auto-analysis</span></h4>
+                <table class="tbl">
+                  <thead><tr><th>Idea</th><th>Market</th><th>Feas.</th><th>Margin</th><th>Comp.</th><th>Score</th><th>Verdict</th><th></th></tr></thead>
+                  <tbody>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="bolt"></span><span class="t-b">AI Menu Planner</span></div></td><td><span class="badge b-ok">84</span></td><td><span class="badge b-ok">76</span></td><td><span class="badge b-ok">80</span></td><td><span class="badge b-warn">68</span></td><td><span class="gscore">82</span></td><td><span class="badge b-ok">Strong</span></td><td><span class="chip">Re-score</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="bolt"></span><span class="t-b">Invoice Scanner</span></div></td><td><span class="badge b-ok">78</span></td><td><span class="badge b-ok">72</span></td><td><span class="badge b-ok">74</span></td><td><span class="badge b-ok">71</span></td><td><span class="gscore">74</span></td><td><span class="badge b-ok">Strong</span></td><td><span class="chip">Re-score</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="bolt"></span><span class="t-b">Docs Chatbot</span></div></td><td><span class="badge b-ok">70</span></td><td><span class="badge b-warn">58</span></td><td><span class="badge b-warn">66</span></td><td><span class="badge b-bad">48</span></td><td><span class="gscore">61</span></td><td><span class="badge b-warn">Explore</span></td><td><span class="chip">Re-score</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="bolt"></span><span class="t-b">Fitness Coach</span></div></td><td><span class="badge b-bad">44</span></td><td><span class="badge b-warn">59</span></td><td><span class="badge b-warn">52</span></td><td><span class="badge b-bad">40</span></td><td><span class="gscore">43</span></td><td><span class="badge b-bad">Weak</span></td><td><span class="chip">Re-score</span></td></tr>
+                    <tr><td><div class="cell-flex"><span class="ico-box" data-ic="bolt"></span><span class="t-b">Email Summarizer</span></div></td><td><span class="badge b-ok">88</span></td><td><span class="badge b-ok">79</span></td><td><span class="badge b-ok">71</span></td><td><span class="badge b-warn">63</span></td><td><span class="gscore">77</span></td><td><span class="badge b-ok">Strong</span></td><td><span class="chip">Re-score</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card">
+                <h4>Scoring model</h4>
+                <div class="stack">
+                  <div><div class="fsb s12"><span class="dim">Market potential</span><span class="bold mono">40%</span></div><div class="prog mt" style="margin-top:6px"><i style="width:40%"></i></div></div>
+                  <div><div class="fsb s12"><span class="dim">Feasibility</span><span class="bold mono">25%</span></div><div class="prog mt" style="margin-top:6px"><i style="width:25%"></i></div></div>
+                  <div><div class="fsb s12"><span class="dim">Margin</span><span class="bold mono">20%</span></div><div class="prog mt" style="margin-top:6px"><i style="width:20%"></i></div></div>
+                  <div><div class="fsb s12"><span class="dim">Competition</span><span class="bold mono">15%</span></div><div class="prog mt" style="margin-top:6px"><i style="width:15%"></i></div></div>
+                  <div class="divider"></div>
+                  <div class="fsb s12"><span class="dim">Score output</span><span class="bold mono">0–100 weighted</span></div>
+                  <div class="fsb s12"><span class="dim">Verdict</span><span class="badge b-acc">LLM classified</span></div>
+                  <div class="fsb s12"><span class="dim">Re-run interval</span><span class="bold mono">on new idea</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 2 · Copywriter + Landing ============ -->
+<div class="view" id="view-g2">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">launchpad.app/copywriter</div>
+        <span class="pill on ml-a" data-ic="write">Copywriter</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">LP</span><div><b>LaunchPad</b><small>AI product launch</small></div></div>
+          <div class="nav-item" data-ic="grid">Dashboard</div>
+          <div class="nav-item nav-cta" data-ic="bolt">New idea</div>
+          <div class="side-section">Launch engine</div>
+          <div class="nav-item" data-ic="spark">Idea scoring</div>
+          <div class="nav-item active" data-ic="write">Copywriter</div>
+          <div class="nav-item" data-ic="layers">Landing pages</div>
+          <div class="side-section">Workspace</div>
+          <div class="nav-item" data-ic="chart">Analytics</div>
+          <div class="nav-item" data-ic="log">Audit logs</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Copywriter</h1><p>Positioning, hooks &amp; hero copy · provider freedom</p></div>
+            <div class="seg ml-a">
+              <button class="on">OpenAI</button><button>Anthropic</button><button>Gemini</button>
+            </div>
+          </div>
+          <div class="content">
+            <div class="grid grow cols-32">
+              <div class="stack">
+                <div class="card">
+                  <h4>Copy variants <span class="spacer">idea · AI Menu Planner</span></h4>
+                  <div class="seg mt" style="margin-top:0;margin-bottom:14px">
+                    <button class="on">Positioning</button><button>Hero hook</button><button>Feature copy</button>
+                  </div>
+                  <div class="stack">
+                    <div class="card" style="background:color-mix(in srgb, var(--accent) 8%, transparent);border-color:color-mix(in srgb, var(--accent) 35%, var(--border))">
+                      <div class="fsb"><span class="badge b-acc">Variant A</span><span class="chip">OpenAI · 142 words</span></div>
+                      <p class="s12 bold mt">Launch your product in 48 hours.</p>
+                      <p class="s12 dim mt">Strategy, copy and landing — generated, assembled, ready.</p>
+                    </div>
+                    <div class="card">
+                      <div class="fsb"><span class="badge b-acc">Variant B</span><span class="chip">Anthropic · 127 words</span></div>
+                      <p class="s12 bold mt">Ship faster than you plan.</p>
+                      <p class="s12 dim mt">An AI launch team behind your next release.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <h4>Assembly <span class="spacer">landing structure</span></h4>
+                  <div class="seg">
+                    <span class="chip on" data-ic="check">Hero</span>
+                    <span class="chip on" data-ic="check">Features</span>
+                    <span class="chip on" data-ic="check">Pricing</span>
+                    <span class="chip on" data-ic="check">FAQ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <h4>Landing preview <span class="spacer on">draft</span></h4>
+                <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden">
+                  <div class="fsb" style="padding:10px 14px;border-bottom:1px solid var(--border);background:var(--surface)">
+                    <span class="flec"><span class="slogo" style="width:22px;height:22px;border-radius:7px;font-size:11px">LP</span><span class="s12 bold">MenuPlanner</span></span>
+                    <span class="flec s12 dim" style="gap:14px"><span>Features</span><span>Pricing</span></span>
+                    <span class="badge b-acc">CTA</span>
+                  </div>
+                  <div style="padding:16px;background:linear-gradient(160deg,rgba(99,102,241,.12),rgba(34,211,238,.05))">
+                    <p class="s13 bold">Plan AI-powered menus in minutes.</p>
+                    <p class="s11 dim">Launch in 48 hours.</p>
+                    <div class="kpis" style="grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px">
+                      <div class="card" style="padding:12px"><span class="s11 bold">Menu scoring</span><span class="s11 dim">Tab: 4 criteria</span></div>
+                      <div class="card" style="padding:12px"><span class="s11 bold">Pricing</span><span class="s11 dim">3 tiers</span></div>
+                      <div class="card" style="padding:12px"><span class="s11 bold">FAQ</span><span class="s11 dim">Generated</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="fsb mt"><span class="badge b-warn">Ready to deploy</span><span class="chip" data-ic="check">JWT · tenant protected</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ GALLERY 3 · Admin & Audit ============ -->
+<div class="view" id="view-g3">
+  <div class="scene">
+    <div class="window">
+      <div class="wbar">
+        <div class="traffic"><i></i><i></i><i></i></div>
+        <div class="url">launchpad.app/admin</div>
+        <span class="pill on ml-a" data-ic="lock">Admin · RBAC</span>
+      </div>
+      <div class="app">
+        <aside class="sidebar">
+          <div class="sbrand"><span class="slogo">LP</span><div><b>LaunchPad</b><small>AI product launch</small></div></div>
+          <div class="nav-item" data-ic="grid">Dashboard</div>
+          <div class="nav-item nav-cta" data-ic="bolt">New idea</div>
+          <div class="side-section">Launch engine</div>
+          <div class="nav-item" data-ic="spark">Idea scoring</div>
+          <div class="nav-item" data-ic="write">Copywriter</div>
+          <div class="nav-item" data-ic="layers">Landing pages</div>
+          <div class="side-section">Workspace</div>
+          <div class="nav-item active" data-ic="log">Audit logs</div>
+          <div class="nav-item" data-ic="chart">Analytics</div>
+          <div class="nav-item" data-ic="gear">Settings</div>
+        </aside>
+        <div class="main">
+          <div class="topbar">
+            <div class="tb-title"><h1>Audit &amp; administration</h1><p>Multi-tenant isolation · Owner / Admin / Member</p></div>
+            <span class="pill on ml-a" data-ic="key">JWT session</span>
+          </div>
+          <div class="content">
+            <div class="kpis">
+              <div class="kpi"><div class="ic" data-ic="box"></div><div class="lk">Tenants</div><div class="vl">6</div><div class="su">provisioned &middot; isolated</div></div>
+              <div class="kpi"><div class="ic" data-ic="users"></div><div class="lk">Roles</div><div class="vl">3</div><div class="su">Owner · Admin · Member</div></div>
+              <div class="kpi"><div class="ic" data-ic="layers"></div><div class="lk">Models</div><div class="vl">3</div><div class="su">OpenAI · Anthropic · Gemini</div></div>
+              <div class="kpi"><div class="ic" data-ic="key"></div><div class="lk">API keys</div><div class="vl">12</div><div class="su">active · scoped</div></div>
+            </div>
+            <div class="card grow">
+              <h4>Audit log <span class="spacer">immutable · recorded</span></h4>
+              <table class="tbl">
+                <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Scope</th><th>Result</th><th>Trace</th></tr></thead>
+                <tbody>
+                  <tr><td class="t-mono">09:42:17</td><td class="t-b">owner</td><td class="cell-flex"><span class="ico-box" data-ic="spark"></span><span>analyze.run</span></td><td class="t-mono">w-01</td><td><span class="badge b-ok">200 OK</span></td><td class="t-mono">ra_91fe</td></tr>
+                  <tr><td class="t-mono">09:41:03</td><td class="t-b">admin</td><td class="cell-flex"><span class="ico-box" data-ic="layers"></span><span>landing.generate</span></td><td class="t-mono">w-03</td><td><span class="badge b-ok">202 Queued</span></td><td class="t-mono">lg_7c2a</td></tr>
+                  <tr><td class="t-mono">09:37:44</td><td class="t-b">owner</td><td class="cell-flex"><span class="ico-box" data-ic="key"></span><span>key.rotate</span></td><td class="t-mono">w-01</td><td><span class="badge b-ok">Rotated</span></td><td class="t-mono">k_3bd9</td></tr>
+                  <tr><td class="t-mono">09:26:31</td><td class="t-b">member</td><td class="cell-flex"><span class="ico-box" data-ic="write"></span><span>copy.variant</span></td><td class="t-mono">w-02</td><td><span class="badge b-ok">Saved</span></td><td class="t-mono">cv_88e1</td></tr>
+                  <tr><td class="t-mono">09:12:58</td><td class="t-b">admin</td><td class="cell-flex"><span class="ico-box" data-ic="users"></span><span>tenant.invite</span></td><td class="t-mono">w-05</td><td><span class="badge b-ok">Email sent</span></td><td class="t-mono">ti_12d4</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/base.js"></script>
+</body>
+</html>

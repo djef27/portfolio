@@ -1,0 +1,16 @@
+# Dépendances installées (puppeteer de génération des mockups)
+node_modules/
+tools/node_modules/
+
+# Artefacts de capture de mockups — régénérables via tools/capture.js
+mockups/out/
+
+# Vidéos de démonstration générées — régénérables via tools/reel.js ; non utilisées par le site
+assets/img/project-*-demo.mp4
+
+# Fichiers système / éditeur
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
