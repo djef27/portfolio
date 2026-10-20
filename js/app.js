@@ -11,8 +11,12 @@
       .replace(/"/g, "&quot;");
 
   const SITE = window.SITE || {};
-  const PROJECTS = window.PROJECTS || [];
+  const Store = window.Store;
+  const Demos = window.Demos;
+
+  let PROJECTS = Store ? Store.getAll() : window.PROJECTS || [];
   let visibleProjects = PROJECTS.slice();
+  let activeCategory = "Tous";
   let currentIndex = 0;
   let activeTab = "overview";
   let lastFocused = null;
@@ -48,13 +52,33 @@
     }
   ];
 
-  const TECH = Array.from(
-    new Set(
-      PROJECTS.reduce((acc, p) => acc.concat(p.technologies || []), [
-        "TypeScript", "React", "NestJS", "Next.js"
-      ])
-    )
-  );
+  function techList() {
+    return Array.from(
+      new Set(
+        PROJECTS.reduce((acc, p) => acc.concat(p.technologies || []), ["TypeScript", "React", "NestJS", "Next.js"])
+      )
+    );
+  }
+
+  function cover(p) {
+    if (p.image) {
+      return (
+        '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy"' +
+        (p.mockup ? ' class="mockup-img"' : "") + " />"
+      );
+    }
+    const initials = String(p.title || "?")
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((w) => w[0] || "")
+      .join("")
+      .toUpperCase();
+    return (
+      '<div class="project-cover" style="--pc:' + esc(p.accent || "#6366f1") + ';--pc2:' + esc(p.accent2 || "#22d3ee") + '">' +
+      '<span class="project-cover-initials">' + esc(initials) + "</span>" +
+      '<span class="project-cover-cat">' + esc(p.category || "") + "</span></div>"
+    );
+  }
 
   function applySite() {
     $$("[data-site]").forEach((el) => {
@@ -75,7 +99,7 @@
   function initTyped() {
     const el = $("#typed");
     if (!el) return;
-    const words = (SITE.roles && SITE.roles.length ? SITE.roles : [SITE.role || "Développeur"]);
+    const words = SITE.roles && SITE.roles.length ? SITE.roles : [SITE.role || "Développeur"];
     let w = 0, c = 0, deleting = false;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) { el.textContent = words[0]; return; }
@@ -95,7 +119,7 @@
   function initMarquee() {
     const track = $("#marqueeTrack");
     if (!track) return;
-    const chips = TECH.map((t) => '<span class="tech-chip">' + esc(t) + "</span>").join("");
+    const chips = techList().map((t) => '<span class="tech-chip">' + esc(t) + "</span>").join("");
     track.innerHTML = chips + chips;
   }
 
@@ -113,40 +137,48 @@
     ).join("");
   }
 
-  function initFilters() {
+  function renderFilters() {
     const wrap = $("#filterChips");
     if (!wrap) return;
     const cats = ["Tous"].concat(Array.from(new Set(PROJECTS.map((p) => p.category))));
+    if (cats.indexOf(activeCategory) === -1) activeCategory = "Tous";
     wrap.innerHTML = cats
-      .map((cat, i) => '<button class="filter' + (i === 0 ? " active" : "") + '" role="tab" data-cat="' + esc(cat) + '">' + esc(cat) + "</button>")
+      .map((cat) => '<button class="filter' + (cat === activeCategory ? " active" : "") + '" role="tab" data-cat="' + esc(cat) + '">' + esc(cat) + "</button>")
       .join("");
-    wrap.addEventListener("click", (e) => {
-      const btn = e.target.closest(".filter");
-      if (!btn) return;
-      $$(".filter", wrap).forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const cat = btn.getAttribute("data-cat");
-      visibleProjects = cat === "Tous" ? PROJECTS.slice() : PROJECTS.filter((p) => p.category === cat);
-      renderProjects();
-    });
+  }
+
+  function applyFilter() {
+    visibleProjects =
+      activeCategory === "Tous" ? PROJECTS.slice() : PROJECTS.filter((p) => p.category === activeCategory);
+    renderProjects();
   }
 
   function techTags(list, max) {
-    const items = (list || []).slice(0, max || 4);
-    return items.map((t) => "<span>" + esc(t) + "</span>").join("");
+    return (list || [])
+      .slice(0, max || 4)
+      .map((t) => "<span>" + esc(t) + "</span>")
+      .join("");
   }
 
   function renderProjects() {
     const grid = $("#projectsGrid");
     if (!grid) return;
+    if (!visibleProjects.length) {
+      grid.innerHTML = '<div class="projects-empty">Aucun projet dans cette catégorie.</div>';
+      return;
+    }
     grid.innerHTML = visibleProjects
       .map((p, i) => {
         const idx = PROJECTS.indexOf(p);
+        const demoBadge = p.demo && Demos && Demos.has(p.demo)
+          ? '<span class="img-tag play">▶ Démo jouable</span>'
+          : "";
         return (
-          '<article class="project-card" data-index="' + idx + '" style="--pc:' + p.accent + ';animation-delay:' + i * 70 + "ms\">" +
+          '<article class="project-card" data-index="' + idx + '" style="--pc:' + esc(p.accent) + ';animation-delay:' + i * 70 + 'ms">' +
           '<div class="project-media">' +
-          '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" loading="lazy"' + (p.mockup ? ' class="mockup-img"' : "") + " />" +
+          cover(p) +
           (p.mockup ? '<span class="img-tag">UI Render</span>' : "") +
+          demoBadge +
           '<div class="project-overlay"><span class="view-btn">Voir le projet' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>' +
           "</div>" +
@@ -208,7 +240,7 @@
   }
 
   function tabGallery(p) {
-    const note = p.mockup
+    const note = p.mockup && p.image
       ? '<p class="gallery-note">UI renders du projet — remplaçables par des captures de production sur demande.</p>'
       : "";
     let body;
@@ -228,10 +260,25 @@
     return note + body;
   }
 
+  function tabDemo(p, holder) {
+    const name = p.demo || "";
+    const has = Demos && Demos.has(name);
+    const title = Demos && has ? Demos.registry[name].title : "Aperçu interactif";
+    const note = has
+      ? ""
+      : '<p class="gallery-note">Pas de démo dédiée pour ce projet — voici un aperçu interactif générique.</p>';
+    holder.innerHTML = note + '<div class="demo-frame" style="--pc:' + esc(p.accent) + '"><div class="demo-mount" id="demoMount"></div></div>';
+    if (Demos) {
+      const mount = $("#demoMount", holder);
+      Demos.mount(has ? name : "fallback", mount, p);
+    }
+    return title;
+  }
+
   function tabSpecs(p) {
     const links = [];
     if (p.liveUrl) links.push('<a class="btn btn-primary btn-sm" href="' + esc(p.liveUrl) + '" target="_blank" rel="noopener">Voir la démo</a>');
-    if (p.githubUrl) links.push('<a class="btn btn-ghost btn-sm" href="' + esc(p.githubUrl) + '" target="_blank" rel="noopener">Code source</a>');
+    if (p.githubUrl) links.push('<a class="btn btn-ghost btn-sm" href="' + esc(p.githubUrl) + '" target="_blank" rel="noopener">Code source (GitHub)</a>');
     if (!links.length) links.push('<span class="btn btn-ghost btn-sm" style="cursor:default;opacity:.7">Code source disponible sur demande</span>');
     return (
       '<div class="spec-grid">' +
@@ -241,6 +288,7 @@
       (p.status ? "<div><dt>Statut</dt><dd>" + esc(p.status) + "</dd></div>" : "") +
       "<div><dt>Rôle</dt><dd>" + esc(p.role) + "</dd></div>" +
       "<div><dt>Type</dt><dd>Projet personnel / freelance</dd></div>" +
+      (p.localPath ? "<div><dt>Repo local</dt><dd class=\"mono small\">" + esc(p.localPath) + "</dd></div>" : "") +
       "</dl></div>" +
       '<div class="spec-block wide"><h4>Liens</h4><div class="spec-links">' + links.join("") + "</div></div>" +
       "</div>"
@@ -251,10 +299,20 @@
     const p = PROJECTS[currentIndex];
     const content = $("#modalContent");
     if (!p || !content) return;
+    if (Demos) Demos.unmount();
     content.classList.remove("fade");
     void content.offsetWidth;
-    content.innerHTML =
-      activeTab === "gallery" ? tabGallery(p) : activeTab === "specs" ? tabSpecs(p) : tabOverview(p);
+    let html;
+    if (activeTab === "demo") {
+      html = "";
+      content.innerHTML = "";
+      const sub = document.createElement("div");
+      content.appendChild(sub);
+      tabDemo(p, sub);
+    } else {
+      html = activeTab === "gallery" ? tabGallery(p) : activeTab === "specs" ? tabSpecs(p) : tabOverview(p);
+      content.innerHTML = html;
+    }
     content.classList.add("fade");
     $$("#modalTabs .tab").forEach((t) => t.classList.toggle("active", t.getAttribute("data-tab") === activeTab));
   }
@@ -266,11 +324,11 @@
     $("#modalTagline").textContent = p.tagline;
     $("#modalCategory").textContent = p.category;
     $("#modalHero").innerHTML =
-      '<img src="' + esc(p.image) + '" alt="' + esc(p.title) + '" />' +
-      (p.mockup ? '<span class="img-tag">UI Render</span>' : "") +
+      cover(p) +
+      (p.mockup && p.image ? '<span class="img-tag">UI Render</span>' : "") +
       '<span class="modal-category" id="modalCategory">' + esc(p.category) + "</span>";
     $("#modalHero").style.setProperty("--pc", p.accent);
-    $("#projCount").textContent = (currentIndex + 1) + " / " + PROJECTS.length;
+    $("#projCount").textContent = currentIndex + 1 + " / " + PROJECTS.length;
     renderTab();
   }
 
@@ -288,6 +346,7 @@
 
   function closeModal() {
     const modal = $("#modal");
+    if (Demos) Demos.unmount();
     modal.classList.remove("open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("no-scroll");
@@ -325,14 +384,42 @@
   }
 
   function trapFocus(e, modal) {
-    const focusable = $$('button, a[href], [tabindex]:not([tabindex="-1"])', modal).filter(
-      (el) => el.offsetParent !== null
-    );
+    const focusable = $$('button, a[href], [tabindex]:not([tabindex="-1"])', modal).filter((el) => el.offsetParent !== null);
     if (!focusable.length) return;
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+
+  function initFilters() {
+    const wrap = $("#filterChips");
+    if (!wrap) return;
+    wrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter");
+      if (!btn) return;
+      $$(".filter", wrap).forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.getAttribute("data-cat");
+      applyFilter();
+    });
+  }
+
+  function refreshAll() {
+    PROJECTS = Store ? Store.getAll() : window.PROJECTS || [];
+    const modal = $("#modal");
+    if (modal && modal.classList.contains("open") && currentIndex >= PROJECTS.length) currentIndex = 0;
+    renderFilters();
+    applyFilter();
+    initMarquee();
+    if (modal && modal.classList.contains("open") && PROJECTS.length) renderModal();
+    const counter = $("#projectsCount");
+    if (counter) counter.textContent = PROJECTS.length + " projets";
+  }
+
+  function initStore() {
+    if (!Store) return;
+    Store.subscribe(refreshAll);
   }
 
   function initReveal() {
@@ -362,7 +449,7 @@
     function onScroll() {
       const h = document.documentElement;
       const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
-      if (progress) progress.style.width = (scrolled * 100) + "%";
+      if (progress) progress.style.width = scrolled * 100 + "%";
       if (nav) nav.classList.toggle("scrolled", h.scrollTop > 30);
       let active = null;
       sections.forEach((sec) => {
@@ -423,13 +510,22 @@
       socials.innerHTML = html;
       if (!html) socials.style.display = "none";
     }
+    const gh = SITE.links && SITE.links.github;
+    if (!gh && socials) {
+      const known = PROJECTS.map((p) => p.githubUrl).filter(Boolean);
+      if (known.length) {
+        socials.insertAdjacentHTML("beforeend", '<a class="social-link" href="' + esc(known[0]) + '" target="_blank" rel="noopener">GitHub</a>');
+      }
+    }
   }
 
   function init() {
     applySite();
+    initStore();
     initTyped();
     initMarquee();
     initSkills();
+    renderFilters();
     initFilters();
     renderProjects();
     initModal();
@@ -437,6 +533,7 @@
     initScrollUI();
     initMenu();
     initContact();
+    if (window.Admin && window.Admin.init) window.Admin.init();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

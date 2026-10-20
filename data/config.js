@@ -20,6 +20,7 @@ window.SITE = {
   availability: "Disponible pour missions freelance (Fiverr · Upwork)",
   intro: "Je développe des applications web professionnelles — sites, APIs, plateformes SaaS — et j'automatise vos processus avec l'IA (n8n, OpenAI, Gemini). De la maquette au déploiement, je livre un produit fini, responsive et prêt pour le business.",
   email: "fabiendjogbenou27@gmail.com",
+  adminPassword: "fabien2026",
   links: {
     github: "",
     fiverr: "",
